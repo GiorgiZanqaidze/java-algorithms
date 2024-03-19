@@ -22,6 +22,8 @@ public class Main {
             }
         }
 
+        addNewTail(head, 3333);
+
         NodeListUpgraded newHead = addNewHead(head, 213213);
 
         printList(newHead);
@@ -40,5 +42,15 @@ public class Main {
         NodeListUpgraded newHead = new NodeListUpgraded(data);
         newHead.next = head;
         return newHead;
+    }
+
+
+    private static NodeListUpgraded addNewTail(NodeListUpgraded head, Object data) {
+        while (head.next != null ) {
+            head = head.next;
+        }
+
+        head.next = new NodeListUpgraded(data);
+        return head;
     }
 }
