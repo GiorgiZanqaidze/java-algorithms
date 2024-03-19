@@ -1,11 +1,15 @@
 package node_lists;
 
 public class Node {
-    int data;
+    Object data;
     public Node next;
 
     public Node(int data) {
         this.data = data;
+        this.next = null;
+    }
+    public Node() {
+        this.data = null;
         this.next = null;
     }
 
@@ -17,7 +21,7 @@ public class Node {
         return this.next;
     }
 
-    public int getData() {
+    public Object getData() {
         return this.data;
     }
 }
