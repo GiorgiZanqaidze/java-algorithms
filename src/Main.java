@@ -1,56 +1,42 @@
-
-
-import node_list_upgraded.NodeListUpgraded;
+import double_linked_list.Node;
 
 public class Main {
     public static void main(String[] args) {
 
         int[] array = {1, 2, 3, 5};
-        NodeListUpgraded head = null;
-        NodeListUpgraded tail = null;
+
+        Node generatedNodes = insertNodes(array);
+        display(generatedNodes);
+    };
 
 
-        for (int i = 0; i < array.length; i++) {
-            NodeListUpgraded newNode = new NodeListUpgraded(array[i]);
-
-            if (head == null) {
-                head = newNode;
-                tail = newNode;
-            } else {
-                tail.next = newNode;
-                tail = newNode;
-            }
+    public static Node insertNodes(int[] data) {
+        Node head = new Node(data[0]);
+        Node tail = new Node(data[0]);
+        head.next = tail;
+        for (int i = 1; i < data.length; i++) {
+            tail.next = new Node(data[i]);
+            tail.prev = new Node(data[i - 1]);
+            tail = tail.next;
         }
-
-        addNewTail(head, 3333);
-
-        NodeListUpgraded newHead = addNewHead(head, 213213);
-
-        printList(newHead);
-    }
-
-    private static void printList(NodeListUpgraded nodeHead) {
-
-        while (nodeHead != null) {
-            System.out.print(nodeHead.getData() + " ");
-            nodeHead = nodeHead.next;
-        }
-    }
-
-
-    private static NodeListUpgraded addNewHead(NodeListUpgraded head, Object data) {
-        NodeListUpgraded newHead = new NodeListUpgraded(data);
-        newHead.next = head;
-        return newHead;
-    }
-
-
-    private static NodeListUpgraded addNewTail(NodeListUpgraded head, Object data) {
-        while (head.next != null ) {
-            head = head.next;
-        }
-
-        head.next = new NodeListUpgraded(data);
         return head;
+    }
+
+
+    public static void display(Node node) {
+        Node head = node;
+        Node tail = node;
+
+        while (head.prev != null) {
+            head = head.prev;
+            System.out.print("prev: " + head.data + " ");
+        }
+        System.out.print("current: " + tail.data + " ");
+
+        while(tail.next != null) {
+            tail = tail.next;
+            System.out.print("next: " + tail.data + " ");
+        };
+
     }
 }
