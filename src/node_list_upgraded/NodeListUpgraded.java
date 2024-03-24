@@ -14,6 +14,9 @@ public class NodeListUpgraded {
         return this.data;
     }
 
-    
+
+    public void getNodeList() {
+        
+    }
 
 }
